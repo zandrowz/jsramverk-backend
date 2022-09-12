@@ -1,18 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-router.get("/", (req, res) => {
-    const data = {
-        data: {
-            msg: "Docs"
-        }
-    };
+const docsModel = require("../models/docs");
 
-    res.json(data);
-});
+router.get("/", async (req, res) => {
+        const allDocs = await docsModel.getAllDocs();
 
-
-
-
+        return res.json({
+            data: allDocs
+        });
+    }
+);
 
 module.exports = router;

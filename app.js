@@ -1,7 +1,9 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const morgan = require('morgan');
+
 const docs = require("./routes/docs");
 
 const app = express();
@@ -10,7 +12,7 @@ const port = process.env.PORT || 1337;
 app.use(cors());
 app.options('*', cors());
 
-//app.disable('x-powered-by');
+app.disable('x-powered-by');
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,6 +23,7 @@ if (process.env.NODE_ENV !== 'test') {
     // use morgan to log at command line
     app.use(morgan('combined')); // 'combined' outputs the Apache style LOGs
 }
+app.use("/docs", docs);
 
 app.get("/", (req, res) => {
     const data = {
@@ -33,8 +36,6 @@ app.get("/", (req, res) => {
 });
 
 //app.use(express.static(path.join(__dirname, "public")));
-
-app.use("/docs", docs);
 
 app.use((req, res, next) => {
     var err = new Error("Not Found");
