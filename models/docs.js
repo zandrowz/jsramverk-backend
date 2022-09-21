@@ -4,35 +4,6 @@ const initDocs = require("../data/docs.json");
 const ObjectId = require('mongodb').ObjectId;
 
 const docs = {
-    // reset: async function init(n) {
-    //     let db;
-
-    //     try {
-    //         db = await database.getDb();
-
-    //         await db.collection.deleteMany({});
-    //         let result = await db.collection.insertMany([
-    //                 {    
-    //                 "name": "Att göra",
-    //                 "content": "Städa, handla"
-    //                 },
-    //                 {
-    //                 "name": "Ett test",
-    //                 "content": "Hej"
-    //                 }
-    //             ]);
-
-    //         return result;
-    //     } catch (error) {
-    //         return {
-    //             errors: {
-    //                 message: error.message
-    //             }
-    //         };
-    //     } finally {
-    //         await db.client.close();
-    //     }
-    // },
     getAllDocs: async function getAllDocs() {
         let db;
 
