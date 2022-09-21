@@ -5,10 +5,10 @@ It stores textdocuments and can create and update documents with name and conten
 ## Modules
 Install required modules
 
-npm install mongodb --save
-npm install nodemon --save
-npm install express cors morgan --save
-npm install dotenv --save
+- `npm install mongodb --save`
+- `npm install nodemon --save`
+- `npm install express cors morgan --save`
+- `npm install dotenv --save`
 
 ## Start API
 In the project directory, you can run:
