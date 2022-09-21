@@ -1,0 +1,4 @@
+{
+    "localUrl": "mongodb://localhost:27017/documents",
+    "collection": "documents"
+}
