@@ -16,11 +16,12 @@ const database = {
         });
         //console.log(client)
         const db = await client.db();
-        console.log(db)
+        //console.log(db)
         const collection = await db.collection(collectionName);
         //console.log(collection)
 
         return {
+            db: db,
             collection: collection,
             client: client,
         };

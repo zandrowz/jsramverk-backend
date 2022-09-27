@@ -14,13 +14,16 @@ const docs = {
             const allDocs = await db.collection.find().toArray();
             //console.log(allDocs)
 
-            return allDocs;
-        } catch (error) {
-            return {
-                errors: {
-                    message: error.message,
+            if (allDocs) {
+                return allDocs;
+            }
+        } catch (e) {
+            return res.status(500).json({
+                error: {
+                    status: 500,
+                    message: e.message,
                 }
-            };
+            });
         } finally {
             await db.client.close();
         }
@@ -32,7 +35,7 @@ const docs = {
             db = await database.getDb();
 
             const result = await db.collection.insertOne(newDoc);
-            console.log(result)
+            //console.log(result)
 
             return {
                 ...newDoc,
