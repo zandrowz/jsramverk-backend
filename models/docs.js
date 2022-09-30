@@ -17,13 +17,12 @@ const docs = {
             if (allDocs) {
                 return allDocs;
             }
-        } catch (e) {
-            return res.status(500).json({
-                error: {
-                    status: 500,
-                    message: e.message,
-                }
-            });
+        } catch (error) {
+            return {
+                errors: {
+                    message: error.message,
+                },
+            };
         } finally {
             await db.client.close();
         }
@@ -57,22 +56,22 @@ const docs = {
             const content = currentDoc.content;
 
             const result = await db.collection.updateOne(
-                filter, {$set: {content: content}})
+                filter, {$set: {content: content}});
 
             return {
-                    ...currentDoc,
-                    matchedCount: result.matchedCount,
-                };
-            } catch (error) {
-                return {
-                    errors: {
-                        message: error.message
-                    }
-                };
-            } finally {
-                await db.client.close();
-            }
-        },
+                ...currentDoc,
+                matchedCount: result.matchedCount,
+            };
+        } catch (error) {
+            return {
+                errors: {
+                    message: error.message
+                }
+            };
+        } finally {
+            await db.client.close();
+        }
+    },
     init: async function init() {
         let db;
 
@@ -89,6 +88,6 @@ const docs = {
         }
     }
 
-}
+};
 
 module.exports = docs;

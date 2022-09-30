@@ -1,3 +1,4 @@
+/* global it describe, before */
 process.env.NODE_ENV = 'test';
 
 const chai = require('chai');
@@ -31,7 +32,7 @@ describe('docs', () => {
             .finally(async function () {
                 await db.client.close();
             });
-        });
+    });
     //Den är då 0
     describe('GET /docs', () => {
         it('200 HAPPY PATH', (done) => {
@@ -70,7 +71,6 @@ describe('docs', () => {
                 });
         });
 
-        
         // Här ska antal dokument vara 1
         it('200 Get all docs', (done) => {
             chai.request(server)
@@ -85,5 +85,4 @@ describe('docs', () => {
                 });
         });
     });
-
 });
